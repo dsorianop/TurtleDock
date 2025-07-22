@@ -51,10 +51,10 @@ class kobuki_battery():
         rospy.loginfo(f"Kobuki's battery is now: {battery_percent}%")
         rospy.loginfo(charging_status + " at docking station")
 
-        # Log to CSV
+        #log properly to .csv file
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.csv_writer.writerow([timestamp, battery_percent, charging_status])
-        self.csv_file.flush()  # Ensures data is written immediately
+        self.csv_file.flush()  #necessary to ensure data is written immediately
 
     def __del__(self):
         if hasattr(self, 'csv_file'):
